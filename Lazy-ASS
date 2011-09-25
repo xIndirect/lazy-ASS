@@ -1,0 +1,79 @@
+@echo off
+color 0c
+echo do you want to clean up from last time? (Old zip+Update zip)
+:choice1
+set /p C=(Y/N)? 
+for %%? in (Y N) do if /I "%C%"=="%%?" goto ok1
+goto choice1
+:ok1
+set C1=%C%1
+goto %C1%
+:N1
+:start
+cls
+echo select 1 to unzip the files
+ping -n 1 -w 2000 > NUL
+echo select 2 to add your files to the zip
+ping -n 1 -w 2000 > NUL
+echo select 3 to compile the new rom.zip
+ping -n 1 -w 2000 > NUL
+echo select 4 to exit
+ping -n 1 -w 2000 > NUL
+echo select 5 to move the archive to updated-zip
+SET /P menunr=Please make your decision:
+IF %menunr%==1 (goto extract)
+IF %menunr%==2 (goto add)
+IF %menunr%==3 (goto compile)
+IF %menunr%==4 (goto bye)
+IF %menunr%==5 (goto move)
+cls
+echo Error! Not a valid choice. Please try again!
+ping -n 1 -w 2000 > NUL
+cls
+goto :start
+:extract
+cd place-zip-here-for-extraction
+move *.zip extractme.zip
+cd ..
+7za.exe x -oextracted-files place-zip-here-for-extraction\extractme.zip
+echo files successfully extracted. Please continue!
+ping -n 1 -w 2000 > NUL
+cls
+goto start
+:add
+copy files-to-be-added\*.* extracted-files\system\app\*.apk
+pause
+echo files sucessfully added!
+ping -n 1 -w 2000 > NUL
+cls
+goto start
+:compile
+7za.exe a -tzip rom.zip extracted-files\system\
+ping -n 1 -w 500000 > NUL
+move rom.zip updated-zip\rom.zip
+goto :start
+:bye
+del extracted-files
+mkdir extracted-files
+echo thanks for using Rom-apk-Updater script
+ping -n 1 -w 1000 > NUL
+echo made
+ping -n 1 -w 1000 > NUL
+echo by
+ping -n 1 -w 1000 > NUL
+echo indirect
+ping -n 1 -w 5000 > NUL
+exit
+:move
+move rom.zip updated-zip\rom.zip
+cls
+goto start
+:Y1
+:cleanup
+cd place-zip-here-for-extraction
+del extractme.zip
+cd ..
+cd updated-zip
+del Rom.zip
+cd ..
+goto start

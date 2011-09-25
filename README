@@ -1,0 +1,16 @@
+Hey everyone! It's Indirect again bringing you Lazy-ASS v 1.0
+
+What does it do? It allows you to install your apks to your /system folder before you flash a rom so then you dont need to wait for Titanium Backup to run!
+
+
+What do I do?
+You need to do adb pull /data/app and go through and select whatever apps you want to insert into the system folder and put it in the files-to-add folder then just run the commands in order (1,2,3)
+The script DOES clear out the folders if you select to clean it out. This script was tested using Cyanogenmod7 and it worked great. I am now running nightly 204 with Setcpu/Titaniumbackup pro/and a theme all installed to system. There is no limit for the amount of apps you can install just remember, you have a limited system partition.
+
+How does it work? Read what does it do and if you can't understand that, you shouldn't touch a rooted phone.
+
+Why did you just call me an ass?
+
+It stands for App to system storage!
+
+Source: https://github.com/xIndirect/lazy-ASS
